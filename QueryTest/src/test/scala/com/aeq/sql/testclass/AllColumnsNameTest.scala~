@@ -1,0 +1,22 @@
+package com.aeq.sql.testclass
+
+/**
+  * Created by princya on 30/3/16.
+  */
+import com.aeq.sql.main.AllColumnsName
+import org.scalatest.{FunSuite, Matchers, FunSpec}
+class AllColumnsNameTest extends FunSuite{
+
+val allColumnsName=new AllColumnsName()
+ 
+  test(" to handle null properly"){
+    intercept[NullPointerException]{
+      allColumnsName.getAllColumns(null,null)
+    }
+  }
+  test(" should give Columns AfterFrom"){
+	val query=" orders  customers  orders.customerid=customers.customerid"
+	allColumnsName.getColumnsAfterFrom(query) shouldBe(List("orders.customerid=customers.customerid"))
+
+}
+}
